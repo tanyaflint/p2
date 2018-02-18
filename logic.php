@@ -1,7 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tflint
- * Date: 2/14/18
- * Time: 9:20 PM
- */
+require('helpers.php');
+
+if (isset($_GET['total'])){
+    $numberOfWays = $_GET['numberOfWays'];
+    $total = $_GET['total'];
+    $service = $_GET['service'];
+    $roundUp = $_GET['roundUp']; #Fix checkbox
+}
