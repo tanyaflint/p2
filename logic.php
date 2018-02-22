@@ -25,14 +25,14 @@ if ($form->isSubmitted()) {
         ]
     );
 
-    if(!$form->hasErrors){
-    #Initiate a Splitter object
-    $splitter = new Splitter($total, $service);
+    if (!$form->hasErrors) {
+        #Initiate a Splitter object
+        $splitter = new Splitter($total, $service);
 
-    $resultTotal = $splitter->splitBill($numberOfWays);
-    $resultTotal = $splitter->roundAmount($resultTotal, $roundUp);
-    $resultTotal = $splitter->displayAsCurrency($resultTotal);
+        $resultTotal = $splitter->splitBill($numberOfWays);
+        $resultTotal = $splitter->roundAmount($resultTotal, $roundUp);
+        $resultTotal = $splitter->displayAsCurrency($resultTotal);
 
-    $haveResults = true;
+        $haveResults = true;
     }
 }

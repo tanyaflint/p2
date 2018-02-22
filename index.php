@@ -64,7 +64,7 @@ require('logic.php');
             <div class='alert alert-danger'>
                 <ul>
                     <?php foreach ($errors as $error) : ?>
-                        <li><?=$error ?></li>
+                        <li><?= $error ?></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
