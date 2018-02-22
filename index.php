@@ -5,7 +5,7 @@ require('logic.php');
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-    <title>Bill Splitter - Project 2</title>
+    <title>Bill Splitter</title>
     <meta charset='utf-8'>
     <link rel='stylesheet'
           href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'
@@ -17,6 +17,7 @@ require('logic.php');
 <div class='container'>
     <div class="col-xs-10 col-sm-6">
         <h2>Bill Splitter</h2>
+        <p>Welcome! This tool will help you split a tab and tips</p>
         <form method='GET' action='index.php' class='form-horizontal'>
             <div class="input-group">
                 <span class='input-group-addon' id='basic-addon1'>Split how many ways?</span>
@@ -53,10 +54,10 @@ require('logic.php');
                        value="1"
                        id="defaultCheck1" <?= ($roundUp) ? 'checked' : '' ?>>
             </div>
-            <input type='submit' class='btn btn-primary btn-md'>
+            <input type='submit' class='btn btn-primary btn-md' value='Calculate'>
         </form>
         <?php if ($haveResults): ?>
-            <p class='alert alert-success'><?= 'Each person owes: ' . $newTotal ?></p>
+            <p class='alert alert-success'><?= 'Each person owes: ' . $resultTotal ?></p>
         <?php endif; ?>
     </div>
 </div>
