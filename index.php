@@ -1,4 +1,5 @@
 <?php
+require('Form.php');
 require('logic.php');
 ?>
 
@@ -15,18 +16,20 @@ require('logic.php');
 </head>
 <body>
 <div class='container'>
-    <div class="col-xs-10 col-sm-6">
+    <div class="col-xs-12 col-sm-6">
         <h2>Bill Splitter</h2>
         <p>Welcome! This tool will help you split a tab and tips</p>
         <form method='GET' action='index.php' class='form-horizontal'>
             <div class="input-group">
                 <span class='input-group-addon' id='basic-addon1'>Split how many ways?</span>
+
                 <input type='text'
                        class='form-control'
                        name='numberOfWays'
                        placeholder='eg. 3'
                        aria-describedby='basic-addon1'
                        value='<?= sanitize($numberOfWays) ?>'>
+                <span class='input-group-addon' id='basic-addon3'>* Required</span>
             </div>
             <div class="input-group">
                 <span class='input-group-addon' id='basic-addon2'>How much was the tab?</span>
@@ -36,6 +39,7 @@ require('logic.php');
                        placeholder='eg. 49.99'
                        aria-describedby='basic-addon2'
                        value='<?= sanitize($total) ?>'>
+                <span class='input-group-addon' id='basic-addon4'>* Required</span>
             </div>
             <div class="input-group">
                 <label class="input-group-addon" for="serviceSelect">How was the service? </label>
@@ -56,6 +60,15 @@ require('logic.php');
             </div>
             <input type='submit' class='btn btn-primary btn-md' value='Calculate'>
         </form>
+        <?php if ($form->hasErrors) : ?>
+            <div class='alert alert-danger'>
+                <ul>
+                    <?php foreach ($errors as $error) : ?>
+                        <li><?=$error ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
         <?php if ($haveResults): ?>
             <p class='alert alert-success'><?= 'Each person owes: ' . $resultTotal ?></p>
         <?php endif; ?>

@@ -3,24 +3,36 @@ require('helpers.php');
 require('Splitter.php');
 
 use DWA\Splitter;
+use DWA\Form;
 
-$total = isset($_GET['total']) ? $_GET['total'] : '';
-$roundUp = isset($_GET['roundUp']) ? true : false;
+$form = new DWA\Form($_GET);
+
+$total = $form->get('total', '');
+$roundUp = $form->has('roundUp');
 $numberOfWays = '';
 $service = '20';
 $haveResults = false;
 $resultTotal = '';
 
-if ($total) {
-    $numberOfWays = $_GET['numberOfWays'];
-    $service = $_GET['service'];
+if ($form->isSubmitted()) {
+    $numberOfWays = $form->get('numberOfWays');
+    $service = $form->get('service');
 
+    $errors = $form->validate(
+        [
+            'total' => 'required',
+            'numberOfWays' => 'required|numeric',
+        ]
+    );
+
+    if(!$form->hasErrors){
     #Initiate a Splitter object
     $splitter = new Splitter($total, $service);
 
     $resultTotal = $splitter->splitBill($numberOfWays);
-    $resultTotal = $splitter->roundUp($resultTotal, $roundUp);
+    $resultTotal = $splitter->roundAmount($resultTotal, $roundUp);
     $resultTotal = $splitter->displayAsCurrency($resultTotal);
 
     $haveResults = true;
+    }
 }

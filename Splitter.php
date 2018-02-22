@@ -25,7 +25,7 @@ class Splitter
     }
 
     # Rounds up to the nearest dollar if toDollarAmount is true
-    public function roundUp($amount, $toDollarAmount = false)
+    public function roundAmount($amount, $toDollarAmount = false)
     {
         if ($toDollarAmount) {
             return ceil($amount);
